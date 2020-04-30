@@ -19,12 +19,14 @@ renderPics()
     })
 
     commentForm.addEventListener('submit', (e)=>{
+        // console.log('clicked')
        e.preventDefault()
         let li = document.createElement('li')
         li.textContent = e.target.comment.value
         // console.log(li.textContent)
 
         ul.append(li)
+        
     })
 
     
@@ -45,7 +47,7 @@ function makeImage(image){
     // console.log(imageDiv[0])
     // let div = document.createElement('div')
     console.log(image.comments)
-  
+  //COMMENTS IS AN ARRAY(image.comments.content)
    imageDiv[0].innerHTML =
     `
       <div class="image-card">
@@ -56,7 +58,7 @@ function makeImage(image){
           <button class="like-button">♥</button>
         </div>
         <ul class="comments">
-            ${image.comments}  
+        ${image.comments}  
         </ul>
         <form class="comment-form">
           <input
