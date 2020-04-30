@@ -20,8 +20,11 @@ function renderPics(){
 
 function makeImage(image){
     let imageDiv = document.getElementsByClassName('image-card')
+    // console.log(imageDiv[0])
     // let div = document.createElement('div')
-   imageDiv.innerHTML =
+    console.log(image.comments)
+  
+   imageDiv[0].innerHTML =
     `
       <div class="image-card">
         <h2 class="title">${image.title}</h2>
@@ -31,7 +34,7 @@ function makeImage(image){
           <button class="like-button">♥</button>
         </div>
         <ul class="comments">
-            ${image.comments}
+            ${image.comments.content}  
         </ul>
         <form class="comment-form">
           <input
@@ -43,4 +46,14 @@ function makeImage(image){
           <button class="comment-button" type="submit">Post</button>
         `
     
+}
+
+
+function getComment(comments){
+    comments.forEach((comment)=> {
+        let li = document.createElement('li')
+        li.dataset.id = `${comment.id}`
+        li.textContent = comment.content
+        
+    })
 }
