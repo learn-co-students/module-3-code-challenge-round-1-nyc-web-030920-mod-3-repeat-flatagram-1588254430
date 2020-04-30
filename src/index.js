@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 renderPics()
 
+
+    document.addEventListener('click', (e)=>{
+        if(e.target.className === 'like-button'){
+            likePic()
+        }
+    })
+
     
 })
 
@@ -49,11 +56,29 @@ function makeImage(image){
 }
 
 
-function getComment(comments){
-    comments.forEach((comment)=> {
-        let li = document.createElement('li')
-        li.dataset.id = `${comment.id}`
-        li.textContent = comment.content
+// function getComment(comments){
+//     comments.forEach((comment)=> {
+//         let li = document.createElement('li')
+//         li.dataset.id = `${comment.id}`
+//         li.textContent = comment.content
         
+//     })
+// }
+
+function likePic(){
+    // let likebtn = e.target
+    let span = document.getElementsByClassName('likes')[0]
+    // console.log(span)
+    let likes = parseInt(span.innerText)
+    span.innerText = `${++likes} Likes`
+
+    fetch(endPoint, {
+        method: 'PATCH'
+
+
+
+
     })
+
+
 }
