@@ -1,8 +1,12 @@
 const endPoint = 'http://localhost:3000/image'
+const commentForm = document.getElementsByTagName('form')[0]
+// console.log(commentForm)
+const ul = document.getElementsByClassName('comments')[0]
+// console.log(ul)
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
- console.log('Working')
+//  console.log('Working')
 
 
 renderPics()
@@ -14,8 +18,19 @@ renderPics()
         }
     })
 
+    commentForm.addEventListener('submit', (e)=>{
+       e.preventDefault()
+        let li = document.createElement('li')
+        li.textContent = e.target.comment.value
+        // console.log(li.textContent)
+
+        ul.append(li)
+    })
+
     
 })
+
+
 
 function renderPics(){
 
@@ -41,7 +56,7 @@ function makeImage(image){
           <button class="like-button">♥</button>
         </div>
         <ul class="comments">
-            ${image.comments.content}  
+            ${image.comments}  
         </ul>
         <form class="comment-form">
           <input
@@ -73,12 +88,17 @@ function likePic(){
     span.innerText = `${++likes} Likes`
 
     fetch(endPoint, {
-        method: 'PATCH'
-
-
-
-
+        method: 'PATCH',
+        headers: 
+        {
+            'content-type': 'application/json',
+            'accept': 'application/json'
+        },
+        body: JSON.stringify({
+           'likes': likes
+        })
     })
 
 
 }
+
